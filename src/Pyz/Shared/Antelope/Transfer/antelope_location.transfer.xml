@@ -11,4 +11,9 @@
     <transfer name="AntelopeLocationCriteria">
         <property name="idAntelopeLocation" type="int"/>
     </transfer>
+
+    <transfer name="AntelopeLocationResponse">
+        <property name="antelopeLocation" type="AntelopeLocation"/>
+        <property name="isSuccessFul" type="bool"/>
+    </transfer>
 </transfers>
