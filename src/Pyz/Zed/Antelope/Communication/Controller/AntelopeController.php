@@ -1,13 +1,13 @@
 <?php
 
-namespace Pyz\Zed\Training\Communication\Controller;
+namespace Pyz\Zed\Antelope\Communication\Controller;
 
 use Generated\Shared\Transfer\AntelopeTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \Pyz\Zed\Training\Business\TrainingFacadeInterface getFacade()
+ * @method \Pyz\Zed\Antelope\Business\AntelopeFacadeInterface getFacade()
  */
 class AntelopeController extends AbstractController
 {

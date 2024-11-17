@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyz\Zed\Training\Business;
+namespace Pyz\Zed\Antelope\Business;
 
 
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
@@ -8,9 +8,9 @@ use Generated\Shared\Transfer\AntelopeResponseTransfer;
 use Generated\Shared\Transfer\AntelopeTransfer;
 
 /**
- * @method  \Pyz\Zed\Training\Business\TrainingBusinessFactory getFactory()
+ * @method  \Pyz\Zed\Antelope\Business\AntelopeBusinessFactory getFactory()
  */
-interface TrainingFacadeInterface
+interface AntelopeFacadeInterface
 {
     public function createAntelope(AntelopeTransfer $antelopeTransfer
     ): AntelopeTransfer;

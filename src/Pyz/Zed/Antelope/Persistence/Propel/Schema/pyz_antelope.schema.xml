@@ -10,6 +10,9 @@
             <unique-column name="name"/>
         </unique>
         <id-method-parameter value="pyz_antelope_pk_seq"/>
+        <column name="fk_antelope_location" type="INTEGER"/>
+        <foreign-key name="pyz_antelope_location-fk_antelope_location" foreignTable="pyz_antelope_location">
+            <reference local="fk_antelope_location" foreign="id_antelope_location"/>
+        </foreign-key>
     </table>
-
 </database>

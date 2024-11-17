@@ -1,15 +1,15 @@
 <?php
 
-namespace Pyz\Zed\Training\Business\Reader;
+namespace Pyz\Zed\Antelope\Business\Reader;
 
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeResponseTransfer;
-use Pyz\Zed\Training\Persistence\TrainingRepositoryInterface;
+use Pyz\Zed\Antelope\Persistence\AntelopeRepositoryInterface;
 
 class AntelopeReader
 {
     public function __construct(
-        protected TrainingRepositoryInterface $trainingRepository
+        protected AntelopeRepositoryInterface $trainingRepository
     ) {
     }
 
