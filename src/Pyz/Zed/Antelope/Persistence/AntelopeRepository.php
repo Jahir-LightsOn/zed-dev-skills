@@ -4,6 +4,7 @@ namespace Pyz\Zed\Antelope\Persistence;
 
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
+use Generated\Shared\Transfer\AntelopeLocationResponseTransfer;
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
 use Generated\Shared\Transfer\AntelopeTransfer;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
@@ -43,5 +44,18 @@ class AntelopeRepository extends AbstractRepository implements
             return null;
         }
         return (new AntelopeLocationTransfer())->fromArray($antelopeLocationEntity->toArray(), true);
+    }
+
+    public function getAntelopeLocationCollection(): array
+    {
+        $antelopeLocationCollection = $this->getFactory()->createAntelopeLocationQuery()->find();
+        $antelopeLocationResponseTransferCollection = [];
+        foreach ($antelopeLocationCollection as $antelopeLocationEntity) {
+            $antelopeLocationResponseTransfer = new AntelopeLocationResponseTransfer();
+            $antelopeLocationResponseTransfer->setAntelopeLocation(
+                (new AntelopeLocationTransfer())->fromArray($antelopeLocationEntity->toArray(), true));
+            $antelopeLocationResponseTransferCollection[] = $antelopeLocationResponseTransfer;
+        }
+        return $antelopeLocationResponseTransferCollection;
     }
 }

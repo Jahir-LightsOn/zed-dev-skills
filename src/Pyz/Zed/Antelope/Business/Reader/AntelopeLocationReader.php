@@ -25,4 +25,9 @@ class AntelopeLocationReader
         }
         return $antelopeLocationResponseTransfer;
     }
+
+    public function getAntelopeLocationCollection(): array
+    {
+       return $this->antelopeRepository->getAntelopeLocationCollection();
+    }
 }
