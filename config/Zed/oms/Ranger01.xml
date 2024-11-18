@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<statemachine
+    xmlns="spryker:oms-01"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+
+    <process name="Ranger01" main="true">
+        <states>
+            <state name="new" />
+            <state name="paid" />
+            <state name="shipped" />
+            <state name="canceled" />
+            <state name="closed" />
+        </states>
+
+        <transitions>
+            <transition condition="Ranger/IsAuthorized" happy="true">
+                <source>new</source>
+                <target>paid</target>
+                <event>authorize_payment</event>
+            </transition>
+            <transition>
+                <source>new</source>
+                <target>canceled</target>
+                <event>authorize_payment</event>
+            </transition>
+            <transition happy="true">
+                <source>paid</source>
+                <target>shipped</target>
+                <event>ship_order</event>
+            </transition>
+            <transition happy="true">
+                <source>shipped</source>
+                <target>closed</target>
+                <event>close</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="authorize_payment" onEnter="true"/>
+            <event name="authorize_payment" onEnter="true" command="Ranger/Pay"/>
+            <event name="ship_order" manual="true"/>
+            <event name="close" onEnter="true" />
+        </events>
+    </process>
+</statemachine>
