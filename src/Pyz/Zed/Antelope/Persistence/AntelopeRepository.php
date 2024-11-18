@@ -27,9 +27,18 @@ class AntelopeRepository extends AbstractRepository implements
 
     public function getAntelopeLocation(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer): ?AntelopeLocationTransfer
     {
-        $antelopeLocationEntity = $this->getFactory()->createAntelopeLocationQuery()
-            ->filterByIdAntelopeLocation($antelopeLocationCriteriaTransfer->getIdAntelopeLocation())
-            ->findOne();
+        $antelopeLocationQuery= $this->getFactory()->createAntelopeLocationQuery();
+
+        if ($antelopeLocationCriteriaTransfer->getIdAntelopeLocation() !== null) {
+            $antelopeLocationQuery = $antelopeLocationQuery->filterByIdAntelopeLocation($antelopeLocationCriteriaTransfer->getIdAntelopeLocation());
+        } elseif ($antelopeLocationCriteriaTransfer->getLocationName() !== null) {
+            $antelopeLocationQuery = $antelopeLocationQuery->filterByLocationName($antelopeLocationCriteriaTransfer->getLocationName());
+        } else {
+            return null;
+        }
+
+        $antelopeLocationEntity = $antelopeLocationQuery->findOne();
+
         if (!$antelopeLocationEntity) {
             return null;
         }

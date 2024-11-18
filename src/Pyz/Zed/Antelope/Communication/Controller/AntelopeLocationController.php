@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Antelope\Communication\Controller;
 
+use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
 use Generated\Shared\Transfer\AntelopeTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
@@ -18,9 +19,20 @@ class AntelopeLocationController extends AbstractController
      */
     public function addAction(Request $request): array
     {
+        $locationName = $request->get('name') ?? 'Berlin';
+
         $antelopeLocationTransfer = new AntelopeLocationTransfer();
-        $antelopeLocationTransfer->setLocationName($request->get('name') ?? 'Berlin');
-        $this->getFacade()->createAntelopeLocation($antelopeLocationTransfer);
+        $antelopeLocationTransfer->setLocationName($locationName);
+
+        $antelopeLocationResponseTransfer = $this->getFacade()
+            ->getAntelopeLocation((new AntelopeLocationCriteriaTransfer())->setLocationName($locationName));
+
+        if (!$antelopeLocationResponseTransfer->getIsSuccessFul()) {
+            $antelopeLocationTransfer = $this->getFacade()->createAntelopeLocation($antelopeLocationTransfer);
+        } else {
+            $antelopeLocationTransfer = $antelopeLocationResponseTransfer->getAntelopeLocation();
+        }
+
         return $this->viewResponse(['antelopeLocation' => $antelopeLocationTransfer]);
     }
 }
