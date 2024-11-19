@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Antelope\Persistence;
 
+use Generated\Shared\Transfer\AntelopeCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationResponseTransfer;
@@ -57,5 +58,17 @@ class AntelopeRepository extends AbstractRepository implements
             $antelopeLocationResponseTransferCollection[] = $antelopeLocationResponseTransfer;
         }
         return $antelopeLocationResponseTransferCollection;
+    }
+
+    public function getAntelopeCollection(AntelopeCriteriaTransfer $antelopeCriteria): AntelopeCollectionTransfer
+    {
+        $antelopeCollectionQuery = $this->getFactory()->createAntelopeQuery();
+        $antelopeCollectionQuery->joinWithPyzAntelopeLocation()
+            ->joinWithPyzAntelopeType();
+        $antelopeCollection = $antelopeCollectionQuery->find();
+        $antelopeCollectionTransfer = new AntelopeCollectionTransfer();
+        return $this->getFactory()
+            ->createAntelopeMapper()
+            ->mapAntelopeCollectionToAntelopeTransferCollection($antelopeCollection, $antelopeCollectionTransfer);
     }
 }

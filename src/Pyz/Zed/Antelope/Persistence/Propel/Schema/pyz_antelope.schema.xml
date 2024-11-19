@@ -6,13 +6,23 @@
     <table name="pyz_antelope" idMethod="native" allowPkInsert="true" phpName="PyzAntelope">
         <column name="id_antelope" required="true" type="INTEGER" primaryKey="true" autoIncrement="true"/>
         <column name="name" required="true" type="VARCHAR" size="255"/>
+        <column name="color"  type="VARCHAR"  size="64" required = "true"/>
+        <column name="age" type="INTEGER"/>
+        <column name="gender" type="INTEGER" required="true" />
+        <column name="weight" type="INTEGER"  required="true" />
         <unique name="pyz_antelope-name">
             <unique-column name="name"/>
         </unique>
         <id-method-parameter value="pyz_antelope_pk_seq"/>
         <column name="fk_antelope_location" type="INTEGER"/>
+        <column name="fk_antelope_type" type="INTEGER"/>
         <foreign-key name="pyz_antelope_location-fk_antelope_location" foreignTable="pyz_antelope_location">
             <reference local="fk_antelope_location" foreign="id_antelope_location"/>
         </foreign-key>
+        <foreign-key name="pyz_antelope-fk_antelope_type" foreignTable="pyz_antelope_type">
+            <reference local="fk_antelope_type" foreign="id_antelope_type"/>
+        </foreign-key>
+        <behavior name="timestampable"/>
+        <behavior name="event"/>
     </table>
 </database>

@@ -2,6 +2,7 @@
 
 namespace Pyz\Zed\Antelope\Communication\Controller;
 
+use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeTransfer;
 use http\Exception\InvalidArgumentException;
@@ -33,8 +34,15 @@ class AntelopeController extends AbstractController
         if ($antelopeLocation->getIsSuccessFul() === false) {
             throw new NotFoundHttpException('Location not found');
         }
-        $antelopeTransfer->setFkAntelopeLocation($locationId);
+        $antelopeTransfer->setLocationId($locationId);
         $this->getFacade()->createAntelope($antelopeTransfer);
         return $this->viewResponse(['antelope' => $antelopeTransfer]);
+    }
+
+    public function indexAction(Request $request): array
+    {
+        $antelopeCollection = $this->getFacade()->getAntelopeCollection(new AntelopeCriteriaTransfer());
+
+        return $this->viewResponse(['antelopes' => $antelopeCollection->getAntelopes()]);
     }
 }

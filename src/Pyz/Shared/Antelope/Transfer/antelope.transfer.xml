@@ -6,7 +6,14 @@
     <transfer name="Antelope">
         <property name="idAntelope" type="int"/>
         <property name="name" type="string"/>
-        <property name="fkAntelopeLocation" type="int"/>
+        <property name="color" type="string" />
+        <property name="age" type="int"/>
+        <property name="locationId" type="int" />
+        <property name="typeId" type="int" />
+        <property name="weight" type="float" />
+        <property name="gender" type="string" />
+        <property name="type" type="AntelopeType" />
+        <property name="location" type="AntelopeLocation" />
     </transfer>
     <transfer name="AntelopeCriteria">
         <property name="name" type="string"/>
@@ -14,5 +21,25 @@
     <transfer name="AntelopeResponse">
         <property name="antelope" type="Antelope"/>
         <property name="isSuccessFul" type="bool"/>
+    </transfer>
+    <transfer name="AntelopeCollection">
+        <property name="antelopes" type="Antelope[]" singular="antelope"/>
+    </transfer>
+    <transfer name="AntelopeCondition">
+        <property name="idAntelope" type="int" />
+        <property name="name" type="string" />
+        <property name="color" type="string" />
+        <property name="locationId" type="int" />
+        <property name="typeId" type="int" />
+        <property name="antelopeIds" type="int[]" singular="idAntelope" />
+    </transfer>
+    <transfer name="AntelopeSort">
+        <property name="field" type="string" />
+        <property name="isAscending" type="boolean" />
+    </transfer>
+    <transfer name="AntelopeCriteria">
+        <property name="antelopeConditions" type="AntelopeCondition" />
+        <property name="sortCollection" type="AntelopeSort[]" />
+        <property name="pagination" type="PaginationTransfer" />
     </transfer>
 </transfers>

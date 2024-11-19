@@ -1,9 +1,8 @@
 <?php
 
-namespace Pyz\Zed\Antelope\Business\Writer;
+namespace Pyz\Zed\Antelope\Business\AntelopeLocation\Writer;
 
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
-use Generated\Shared\Transfer\AntelopeTransfer;
 use Pyz\Zed\Antelope\Persistence\AntelopeEntityManagerInterface;
 
 class AntelopeLocationWriter

@@ -3,6 +3,7 @@
 namespace Pyz\Zed\Antelope\Persistence;
 
 
+use Generated\Shared\Transfer\AntelopeCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationResponseTransfer;
@@ -27,4 +28,9 @@ interface AntelopeRepositoryInterface
      * @return array<AntelopeLocationResponseTransfer>|[]
      */
     public function getAntelopeLocationCollection(): array;
+
+    /**
+     * @return AntelopeCollectionTransfer
+     */
+    public function getAntelopeCollection(AntelopeCriteriaTransfer $antelopeCriteria): AntelopeCollectionTransfer;
 }

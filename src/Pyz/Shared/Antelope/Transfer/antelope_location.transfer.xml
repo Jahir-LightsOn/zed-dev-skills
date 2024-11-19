@@ -6,6 +6,9 @@
     <transfer name="AntelopeLocation">
         <property name="idAntelopeLocation" type="int"/>
         <property name="locationName" type="string"/>
+        <property name="latitude" type="float"/>
+        <property name="longitude" type="float" />
+        <property name="description" type="string" />
     </transfer>
 
     <transfer name="AntelopeLocationCriteria">
