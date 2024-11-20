@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<transfers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="spryker:transfer-01"
+           xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
+
+    <transfer name="AntelopesBackendApiAttribute">
+        <property name="idAntelope" type="int"/>
+        <property name="name" type="string"/>
+        <property name="color" type="string" />
+        <property name="age" type="int"/>
+        <property name="locationId" type="int" />
+        <property name="typeId" type="int" />
+        <property name="weight" type="float" />
+        <property name="gender" type="string" />
+        <property name="type" type="AntelopeType" />
+        <property name="location" type="AntelopeLocation" />
+    </transfer>
+</transfers>
