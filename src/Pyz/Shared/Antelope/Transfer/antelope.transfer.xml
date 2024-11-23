@@ -24,6 +24,7 @@
     </transfer>
     <transfer name="AntelopeCollection">
         <property name="antelopes" type="Antelope[]" singular="antelope"/>
+        <property name="pagination" type="Pagination"/>
     </transfer>
     <transfer name="AntelopeCondition">
         <property name="idAntelope" type="int" />
@@ -40,6 +41,6 @@
     <transfer name="AntelopeCriteria">
         <property name="antelopeConditions" type="AntelopeCondition" />
         <property name="sortCollection" type="AntelopeSort[]" />
-        <property name="pagination" type="PaginationTransfer" />
+        <property name="pagination" type="Pagination" />
     </transfer>
 </transfers>

@@ -41,4 +41,8 @@ interface AntelopeFacadeInterface
      * @return AntelopeCollectionTransfer
      */
     public function getAntelopeCollection(AntelopeCriteriaTransfer $antelopeCriteria): AntelopeCollectionTransfer;
+
+    public function updateAntelope(AntelopeTransfer $antelopeTransfer);
+
+    public function deleteAntelope(int $getIdAntelope);
 }

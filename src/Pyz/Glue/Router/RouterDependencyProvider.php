@@ -8,6 +8,7 @@
 namespace Pyz\Glue\Router;
 
 use Spryker\Glue\GlueApplication\Plugin\Rest\GlueRouterPlugin;
+use Spryker\Glue\Router\Plugin\Application\RouterApplicationPlugin;
 use Spryker\Glue\Router\RouterDependencyProvider as SprykerRouterDependencyProvider;
 
 class RouterDependencyProvider extends SprykerRouterDependencyProvider

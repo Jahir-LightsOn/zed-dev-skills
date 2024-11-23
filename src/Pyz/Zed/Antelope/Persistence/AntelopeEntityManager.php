@@ -8,6 +8,9 @@ use Orm\Zed\Antelope\Persistence\PyzAntelope;
 use Orm\Zed\Antelope\Persistence\PyzAntelopeLocation;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
+/**
+ * @method \Pyz\Zed\Antelope\Persistence\AntelopePersistenceFactory getFactory()
+ */
 class AntelopeEntityManager extends AbstractEntityManager implements
     AntelopeEntityManagerInterface
 {
@@ -26,5 +29,24 @@ class AntelopeEntityManager extends AbstractEntityManager implements
         $antelopeLocationEntity->save();
         return $antelopeLocationTransfer->fromArray($antelopeLocationEntity->toArray(), true);
 
+    }
+
+    public function updateAntelope(AntelopeTransfer $antelopeTransfer): AntelopeTransfer
+    {
+        $antelopeEntity = $this->getFactory()
+            ->createAntelopeQuery()
+            ->findOneByIdAntelope($antelopeTransfer->getIdAntelope());
+        $antelopeEntity->fromArray($antelopeTransfer->modifiedToArray());
+        $antelopeEntity->save();
+        return $antelopeTransfer->fromArray($antelopeEntity->toArray(), true);
+    }
+
+    public function deleteAntelope(int $antelopeId): bool
+    {
+        $antelopeEntity = $this->getFactory()
+            ->createAntelopeQuery()
+            ->findOneByIdAntelope($antelopeId);
+        $antelopeEntity->delete();
+        return $antelopeEntity->isDeleted();
     }
 }

@@ -8,4 +8,6 @@ use Generated\Shared\Transfer\GlueResponseTransfer;
 interface AntelopeReaderInterface
 {
     public function getCollectionAction(GlueRequestTransfer $requestTransfer): GlueResponseTransfer;
+
+    public function getAntelope(GlueRequestTransfer $requestTransfer): GlueResponseTransfer;
 }

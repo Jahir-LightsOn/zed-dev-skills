@@ -8,10 +8,10 @@ use Generated\Shared\Transfer\GlueResourceMethodCollectionTransfer;
 use Generated\Shared\Transfer\GlueResourceMethodConfigurationTransfer;
 use Pyz\Glue\AntelopesBackendApi\AntelopesBackendApiConfig;
 use Pyz\Glue\AntelopesBackendApi\Controller\AntelopeBackendApiResourceController;
+use Spryker\Glue\GlueApplication\Plugin\GlueApplication\Backend\AbstractResourcePlugin;
 use Spryker\Glue\GlueJsonApiConventionExtension\Dependency\Plugin\JsonApiResourceInterface;
-use Spryker\Glue\Kernel\Backend\AbstractPlugin;
 
-class AntelopesBackendResourcePlugin extends AbstractPlugin implements JsonApiResourceInterface
+class AntelopesBackendResourcePlugin extends AbstractResourcePlugin implements JsonApiResourceInterface
 {
 
     /**
@@ -46,10 +46,5 @@ class AntelopesBackendResourcePlugin extends AbstractPlugin implements JsonApiRe
             ->setPatch((new GlueResourceMethodConfigurationTransfer())->setAttributes($attribute))
             ->setDelete((new GlueResourceMethodConfigurationTransfer())->setAttributes($attribute));
         return $collection;
-    }
-
-    public function getResource(GlueRequestTransfer $glueRequestTransfer): callable
-    {
-        // TODO: Implement getResource() method.
     }
 }

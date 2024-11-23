@@ -16,4 +16,14 @@ class AntelopeWriter
     ): AntelopeTransfer {
         return $this->entityManager->createAntelope($antelopeTransfer);
     }
+
+    public function updateAntelope(AntelopeTransfer $antelopeTransfer)
+    {
+        return $this->entityManager->updateAntelope($antelopeTransfer);
+    }
+
+    public function deleteAntelope(int $antelopeId): bool
+    {
+        return $this->entityManager->deleteAntelope($antelopeId);
+    }
 }
