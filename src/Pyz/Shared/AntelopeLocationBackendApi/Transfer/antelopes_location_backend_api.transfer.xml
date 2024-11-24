@@ -3,21 +3,11 @@
            xmlns="spryker:transfer-01"
            xsi:schemaLocation="spryker:transfer-01 http://static.spryker.com/transfer-01.xsd">
 
-    <transfer name="AntelopeLocation">
+    <transfer name="AntelopeLocationsBackendApiAttribute">
         <property name="idAntelopeLocation" type="int"/>
         <property name="locationName" type="string"/>
         <property name="latitude" type="float"/>
         <property name="longitude" type="float" />
         <property name="description" type="string" />
-    </transfer>
-
-    <transfer name="AntelopeLocationCriteria">
-        <property name="idAntelopeLocation" type="int"/>
-        <property name="locationName" type="string" />
-    </transfer>
-
-    <transfer name="AntelopeLocationResponse">
-        <property name="antelopeLocation" type="AntelopeLocation"/>
-        <property name="isSuccessFul" type="bool"/>
     </transfer>
 </transfers>

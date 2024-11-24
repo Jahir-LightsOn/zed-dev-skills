@@ -7,6 +7,7 @@
 
 namespace Pyz\Glue\GlueBackendApiApplication;
 
+use Pyz\Glue\AntelopeLocationsBackendApi\Plugin\AntelopeLocationsBackendResourcePlugin;
 use Pyz\Glue\AntelopesBackendApi\Plugin\AntelopesBackendResourcePlugin;
 use Spryker\Glue\DynamicEntityBackendApi\Plugin\GlueApplication\DynamicEntityRouteProviderPlugin;
 use Spryker\Glue\EventDispatcher\Plugin\GlueBackendApiApplication\EventDispatcherApplicationPlugin;
@@ -119,6 +120,7 @@ class GlueBackendApiApplicationDependencyProvider extends SprykerGlueBackendApiA
             new PickingListItemsBackendResourcePlugin(),
             new WarehouseUserAssignmentsBackendResourcePlugin(),
             new AntelopesBackendResourcePlugin(),
+            new AntelopeLocationsBackendResourcePlugin(),
         ];
     }
 
