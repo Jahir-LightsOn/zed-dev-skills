@@ -6,6 +6,7 @@ use Generated\Shared\Transfer\AntelopeLocationConditionTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
 use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
+use Pyz\Glue\AntelopeLocationsBackendApi\AntelopeLocationsBackendApiConfig;
 use Pyz\Glue\AntelopeLocationsBackendApi\Processor\ResponseBuilder\AntelopeLocationResponseBuilderInterface;
 use Pyz\Zed\AntelopeLocation\Business\AntelopeLocationFacadeInterface;
 
@@ -48,6 +49,9 @@ class AntelopeLocationReader implements AntelopeLocationReaderInterface
     private function getAntelopeLocationCollectionTransfer(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer): GlueResponseTransfer
     {
         $antelopeLocationCollectionTransfer = $this->antelopeLocationFacade->getAntelopeLocationCollection($antelopeLocationCriteriaTransfer);
+        if ($antelopeLocationCollectionTransfer->getAntelopeLocations()->count() === 0) {
+            return $this->antelopeLocationResponseBuilder->createAntelopeLocationSingleErrorResponse(AntelopeLocationsBackendApiConfig::ANTELOPE_LOCATION_NOT_FOUND);
+        }
         return $this->antelopeLocationResponseBuilder->createAntelopeLocationResponse($antelopeLocationCollectionTransfer);
     }
 }

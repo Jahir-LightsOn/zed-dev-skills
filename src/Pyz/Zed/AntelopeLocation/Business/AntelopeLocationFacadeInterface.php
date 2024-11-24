@@ -40,5 +40,5 @@ interface AntelopeLocationFacadeInterface
      */
     public function updateAntelope(AntelopeLocationTransfer $antelopeLocationTransfer): AntelopeLocationTransfer;
 
-    public function deleteAntelopeLocation(AntelopeLocationTransfer $antelopeTransfer);
+    public function deleteAntelopeLocation(AntelopeLocationTransfer $antelopeLocationTransfer);
 }

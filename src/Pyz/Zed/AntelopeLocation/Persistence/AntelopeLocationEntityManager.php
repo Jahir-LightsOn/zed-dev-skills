@@ -3,6 +3,7 @@
 namespace Pyz\Zed\AntelopeLocation\Persistence;
 
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
+use Generated\Shared\Transfer\ErrorTransfer;
 use Orm\Zed\Antelope\Persistence\PyzAntelopeLocation;
 use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 
@@ -19,7 +20,11 @@ class AntelopeLocationEntityManager extends AbstractEntityManager implements
     {
         $antelopeLocationEntity = new PyzAntelopeLocation();
         $antelopeLocationEntity->fromArray($antelopeLocationTransfer->modifiedToArray());
-        $antelopeLocationEntity->save();
+        try {
+            $antelopeLocationEntity->save();
+        } catch (\Exception $e) {
+            return $antelopeLocationTransfer->setErrors((new \ArrayObject([(new ErrorTransfer())])));
+        }
         return $antelopeLocationTransfer->fromArray($antelopeLocationEntity->toArray(), true);
 
     }
@@ -33,11 +38,16 @@ class AntelopeLocationEntityManager extends AbstractEntityManager implements
             ->filterByIdAntelopeLocation($antelopeLocationTransfer->getIdAntelopeLocation())->findOne();
 
         if (!$antelopeLocationEntity) {
-            return $antelopeLocationTransfer;
+            return $antelopeLocationTransfer->setErrors((new \ArrayObject([(new ErrorTransfer())])));
         }
         $antelopeLocationEntity->fromArray($antelopeLocationTransfer->toArray());
 
-        $antelopeLocationEntity->save();
+        try {
+            $antelopeLocationEntity->save();
+        } catch (\Exception $e) {
+            $antelopeLocationTransfer->setIdAntelopeLocation(null);
+            return $antelopeLocationTransfer->setErrors((new \ArrayObject([(new ErrorTransfer())])));
+        }
 
         return $antelopeLocationTransfer->fromArray($antelopeLocationEntity->toArray(), true);
     }

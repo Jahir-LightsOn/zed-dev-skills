@@ -14,6 +14,10 @@ use Pyz\Glue\AntelopeLocationsBackendApi\Processor\Writer\AntelopeLocationWriter
 use Pyz\Glue\AntelopeLocationsBackendApi\Processor\Writer\AntelopeLocationWriterInterface;
 use Pyz\Zed\AntelopeLocation\Business\AntelopeLocationFacadeInterface;
 use Spryker\Glue\Kernel\Backend\AbstractFactory;
+
+/**
+ * @method \Pyz\Glue\AntelopeLocationsBackendApi\AntelopeLocationsBackendApiConfig getConfig()
+ */
 class AntelopeLocationsBackendApiFactory extends AbstractFactory
 {
     public function getAntelopeLocationFacade(): AntelopeLocationFacadeInterface
@@ -28,7 +32,7 @@ class AntelopeLocationsBackendApiFactory extends AbstractFactory
 
     public function createAntelopeLocationResourceBuilder(): AntelopeLocationResponseBuilderInterface
     {
-        return new AntelopeLocationResponseBuilder();
+        return new AntelopeLocationResponseBuilder($this->getConfig());
     }
 
     public function createAntelopeLocationWriter(): AntelopeLocationWriterInterface

@@ -4,6 +4,7 @@ namespace Pyz\Zed\AntelopeLocation\Persistence;
 
 use Generated\Shared\Transfer\AntelopeLocationCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
+use Generated\Shared\Transfer\ErrorTransfer;
 use Generated\Shared\Transfer\PaginationTransfer;
 use Orm\Zed\AntelopeLocation\Persistence\PyzAntelopeLocationQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractRepository;
@@ -25,6 +26,11 @@ class AntelopeLocationRepository extends AbstractRepository implements
             $this->applyPagination($antelopeLocationQuery, $paginationTransfer);
         }
         $antelopeLocationEntityCollection = $antelopeLocationQuery->find();
+        if ($antelopeLocationEntityCollection->count() === 0) {
+            return $antelopeLocationCollection->setErrors(
+                new \ArrayObject((new ErrorTransfer())->setMessage('No antelope location found'))
+            );
+        }
         return $this->getFactory()->createAntelopeLocationMapper()
             ->mapAntelopeLocationEntityCollectionToAntelopeLocationTransferCollection($antelopeLocationEntityCollection, $antelopeLocationCollection);
     }

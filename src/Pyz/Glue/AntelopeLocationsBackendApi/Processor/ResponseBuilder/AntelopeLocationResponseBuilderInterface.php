@@ -16,4 +16,11 @@ interface AntelopeLocationResponseBuilderInterface
      * @return GlueResourceTransfer
      */
     public function mapAntelopeLocationDtoToGlueResourceTransfer(AntelopeLocationTransfer $antelopeLocation): GlueResourceTransfer;
+
+    /**
+     * @param string $message
+     *
+     * @return \Generated\Shared\Transfer\GlueResponseTransfer
+     */
+    public function createAntelopeLocationSingleErrorResponse(string $message): GlueResponseTransfer;
 }

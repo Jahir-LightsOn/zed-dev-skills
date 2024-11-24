@@ -7,6 +7,7 @@ use Generated\Shared\Transfer\AntelopeLocationsBackendApiAttributeTransfer;
 use Generated\Shared\Transfer\AntelopeLocationTransfer;
 use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
+use Pyz\Glue\AntelopeLocationsBackendApi\AntelopeLocationsBackendApiConfig;
 use Pyz\Glue\AntelopeLocationsBackendApi\Processor\ResponseBuilder\AntelopeLocationResponseBuilderInterface;
 use Pyz\Zed\AntelopeLocation\Business\AntelopeLocationFacadeInterface;
 
@@ -22,6 +23,9 @@ class AntelopeLocationWriter implements AntelopeLocationWriterInterface
     {
         $antelopeLocationTransfer = (new AntelopeLocationTransfer())->fromArray($antelopeLocationsBackendApiAttributeTransfer->toArray(), true);
         $antelopeLocationTransfer = $this->antelopeLocationFacade->createAntelopeLocation($antelopeLocationTransfer);
+        if ($antelopeLocationTransfer->getIdAntelopeLocation() === null) {
+            return $this->antelopeLocationResponseBuilder->createAntelopeLocationSingleErrorResponse(AntelopeLocationsBackendApiConfig::ANTELOPE_LOCATION_NOT_CREATED);
+        }
         $antelopeLocationCollection = (new AntelopeLocationCollectionTransfer())->addAntelopeLocation($antelopeLocationTransfer);
         return $this->antelopeLocationResponseBuilder->createAntelopeLocationResponse($antelopeLocationCollection);
     }

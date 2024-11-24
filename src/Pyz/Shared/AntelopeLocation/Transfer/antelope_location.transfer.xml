@@ -9,6 +9,7 @@
         <property name="latitude" type="float"/>
         <property name="longitude" type="float" />
         <property name="description" type="string" />
+        <property name="errors" type="Error[]" singular="error"/>
     </transfer>
 
     <transfer name="AntelopeLocationResponse">
@@ -19,6 +20,7 @@
     <transfer name="AntelopeLocationCollection">
         <property name="antelopeLocations" type="AntelopeLocation[]" singular="antelopeLocation"/>
         <property name="pagination" type="Pagination"/>
+        <property name="errors" type="Error[]" singular="error"/>
     </transfer>
 
     <transfer name="AntelopeLocationCondition">
