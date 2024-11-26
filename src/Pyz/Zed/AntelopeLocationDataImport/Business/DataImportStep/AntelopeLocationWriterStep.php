@@ -3,11 +3,13 @@
 namespace Pyz\Zed\AntelopeLocationDataImport\Business\DataImportStep;
 
 use Orm\Zed\Antelope\Persistence\PyzAntelopeLocationQuery;
+use Pyz\Shared\AntelopeLocationSearch\AntelopeLocationSearchConfig;
 use Pyz\Zed\AntelopeLocationDataImport\AntelopeLocationDataImportConfig;
 use Spryker\Zed\DataImport\Business\Model\DataImportStep\DataImportStepInterface;
+use Spryker\Zed\DataImport\Business\Model\DataImportStep\PublishAwareStep;
 use Spryker\Zed\DataImport\Business\Model\DataSet\DataSetInterface;
 
-class AntelopeLocationWriterStep implements DataImportStepInterface
+class AntelopeLocationWriterStep extends PublishAwareStep implements DataImportStepInterface
 {
     public function execute(DataSetInterface $dataSet)
     {
@@ -20,6 +22,7 @@ class AntelopeLocationWriterStep implements DataImportStepInterface
 
         if ($antelopeLocationEntity->isNew() || $antelopeLocationEntity->isModified()) {
             $antelopeLocationEntity->save();
+            $this->addPublishEvents(AntelopeLocationSearchConfig::ANTELOPE_LOCATION_PUBLISH, $antelopeLocationEntity->getIdAntelopeLocation());
         }
     }
 }

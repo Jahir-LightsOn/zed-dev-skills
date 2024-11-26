@@ -7,7 +7,9 @@
 
 namespace Pyz\Zed\Publisher;
 
+use Pyz\Shared\AntelopeLocationSearch\AntelopeLocationSearchConfig;
 use Pyz\Shared\AntelopeSearch\AntelopeSearchConfig;
+use Pyz\Zed\AntelopeLocationSearch\Communication\Plugin\Publisher\AntelopeLocationWriterPublisherPlugin;
 use Pyz\Zed\AntelopeSearch\Communication\Plugin\Publisher\AntelopeWritePublisherPlugin;
 use Spryker\Shared\GlossaryStorage\GlossaryStorageConfig;
 use Spryker\Shared\PublishAndSynchronizeHealthCheck\PublishAndSynchronizeHealthCheckConfig;
@@ -139,6 +141,7 @@ class PublisherDependencyProvider extends SprykerPublisherDependencyProvider
             $this->getCustomerStoragePlugins(),
             $this->getProductMessageBrokerPlugins(),
             $this->getAntelopeSearchPlugins(),
+            $this->getAntelopeLocationSearchPlugins(),
         );
     }
 
@@ -413,6 +416,15 @@ class PublisherDependencyProvider extends SprykerPublisherDependencyProvider
         return [
             AntelopeSearchConfig::ANTELOPE_PUBLISH_SEARCH_QUEUE => [
                 new AntelopeWritePublisherPlugin(),
+            ]
+        ];
+    }
+
+    private function getAntelopeLocationSearchPlugins()
+    {
+        return [
+            AntelopeLocationSearchConfig::ANTELOPE_LOCATION_PUBLISH_SEARCH_QUEUE => [
+                new AntelopeLocationWriterPublisherPlugin(),
             ]
         ];
     }
