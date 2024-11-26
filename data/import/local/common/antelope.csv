@@ -1,5 +1,5 @@
 name,color,age,weight,gender,locationId,typeId
-Bob,gray,5,25,M,1,2
-Luke,pink,3,15,M,9,1
+Bob,pink,5,25,M,1,2
+Luke,grey,3,15,M,9,1
 Lucy,pink,3,15,F,9,2
 Alice,blue,2,10,F,1,1

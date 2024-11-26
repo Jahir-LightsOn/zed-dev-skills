@@ -23,6 +23,8 @@
             <reference local="fk_antelope_type" foreign="id_antelope_type"/>
         </foreign-key>
         <behavior name="timestampable"/>
-        <behavior name="event"/>
+        <behavior name="event">
+            <parameter name="pyz_antelope_all" column="*"/>
+        </behavior>
     </table>
 </database>
